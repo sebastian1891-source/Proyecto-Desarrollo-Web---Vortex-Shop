@@ -1,24 +1,19 @@
-# Nexo Store — Proyecto Base
+# Identidad del proyecto
 
-Proyecto base entregado a los estudiantes para el desarrollo del curso.
+Nombre: Vortex Shop
 
-## Estado inicial
+Temática: Tecnología y electrónica
 
-La estructura general del sistema ya se encuentra creada. En el **Sprint 1** únicamente se trabajará sobre la página de inicio. Los demás módulos serán desarrollados en los próximos sprints.
+Productos: Celulares, computadoras, periféricos, componentes y accesorios tecnológicos.
 
-## Sprint 1
+Público objetivo: Jóvenes y adultos interesados en tecnología, gaming, informática y dispositivos electrónicos.
 
-Durante este sprint deberán:
+Estilo de comunicación: Moderno, directo, tecnológico y accesible
 
-- Definir la temática y el público objetivo.
-- Crear la identidad visual del sitio (nombre, colores y tipografías).
-- Personalizar el hero principal.
-- Incorporar tarjetas estáticas de productos o servicios.
-- Utilizar HTML semántico y Bootstrap.
-- Garantizar un diseño responsive.
-- Agregar textos alternativos a las imágenes.
-- Mantener la navegación entre todas las páginas del proyecto.
+Colores principales: Azul oscuro, celeste y blanco
 
-## Ejecución
+Tipografía: Inter
 
-Abrir el proyecto utilizando **Live Server** desde Visual Studio Code.
+Identidad visual: Logotipo con el nombre "Vortex Shop" acompañado de un ícono de computadora
+
+Categorías iniciales: Celulares, Computación, Gaming, Periféricos y Accesorios.
