@@ -78,3 +78,12 @@ Fondos: tonos claros para el contenido principal y azul oscuro para las seccione
 Diseño responsive: se utilizaron las grillas y componentes de Bootstrap junto con media queries en CSS para adaptar la interfaz a teléfonos, tablets y escritorios.
 
 **Funcionalidades pendientes**
+Implementación de un catálogo dinámico de productos.
+Incorporación de búsqueda de productos.
+Implementación de filtros y ordenamiento por categoría, precio y características.
+Desarrollo de una página de detalle de producto con información ampliada, precio, stock e imágenes.
+Implementación del carrito de compras con posibilidad de agregar, eliminar y modificar cantidades de productos.
+Desarrollo del proceso de checkout y confirmación del pedido.
+Implementación de un sistema de inicio de sesión y registro de usuarios.
+Desarrollo de la sección "Mi perfil" para consultar y modificar información del usuario.
+Integración de un sistema de gestión de pedidos y consulta de su estado.
