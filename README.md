@@ -76,3 +76,5 @@ Botones: bordes redondeados y efectos hover sutiles para reforzar la interacció
 Tarjetas: fondos blancos, bordes suaves, esquinas redondeadas y sombras discretas.
 Fondos: tonos claros para el contenido principal y azul oscuro para las secciones que requieren mayor contraste.
 Diseño responsive: se utilizaron las grillas y componentes de Bootstrap junto con media queries en CSS para adaptar la interfaz a teléfonos, tablets y escritorios.
+
+**Funcionalidades pendientes**
