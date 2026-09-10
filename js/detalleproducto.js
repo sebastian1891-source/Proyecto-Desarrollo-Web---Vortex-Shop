@@ -49,16 +49,6 @@ function crearMensajeProductoNoEncontrado() {
     `;
 }
 
-// Muestra un toast reutilizando los mismos elementos que usa js/base.js
-function mostrarToastDetalle(mensaje) {
-    const toastEl = document.querySelector("#appToast");
-    const toastBody = document.querySelector("#toastMessage");
-    if (!toastEl || !toastBody) return;
-
-    toastBody.textContent = mensaje;
-    bootstrap.Toast.getOrCreateInstance(toastEl).show();
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.querySelector("#detalle-producto");
     if (!contenedor) return;
@@ -75,6 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#btnAgregarCarrito")?.addEventListener("click", () => {
         agregarAlCarrito(producto.id, 1);
-        mostrarToastDetalle(`"${producto.nombre}" se agregó al carrito.`);
+        mostrarToast(`"${producto.nombre}" se agregó al carrito.`);
     });
 });

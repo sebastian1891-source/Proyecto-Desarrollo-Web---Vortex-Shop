@@ -42,6 +42,17 @@ function cambiarCantidadCarrito(idProducto, nuevaCantidad) {
     guardarCarrito(carrito);
 }
 
+// Muestra un toast reutilizando los elementos #appToast/#toastMessage
+// que ya existen en todas las páginas del sitio.
+function mostrarToast(mensaje) {
+    const toastEl = document.querySelector("#appToast");
+    const toastBody = document.querySelector("#toastMessage");
+    if (!toastEl || !toastBody) return;
+
+    toastBody.textContent = mensaje;
+    bootstrap.Toast.getOrCreateInstance(toastEl).show();
+}
+
 function vaciarCarrito() {
     guardarCarrito([]);
 }
@@ -116,7 +127,10 @@ function renderizarCarrito() {
     resumenEl.className = "d-flex justify-content-between align-items-center flex-wrap gap-2 mt-4";
     resumenEl.innerHTML = `
         <button class="btn btn-outline-secondary btn-sm" id="btnVaciarCarrito">Vaciar carrito</button>
-        <h2 class="fw-bold mb-0" style="color: var(--primary);">Total: ${formatearPrecio(total)}</h2>
+        <div class="d-flex align-items-center gap-3">
+            <h2 class="fw-bold mb-0" style="color: var(--primary);">Total: ${formatearPrecio(total)}</h2>
+            <button class="btn btn-primary" id="btnConfirmarCompra">Confirmar compra</button>
+        </div>
     `;
     contenedor.appendChild(resumenEl);
 
@@ -141,6 +155,10 @@ function conectarEventosCarrito() {
     document.querySelector("#btnVaciarCarrito")?.addEventListener("click", () => {
         vaciarCarrito();
         renderizarCarrito();
+    });
+
+    document.querySelector("#btnConfirmarCompra")?.addEventListener("click", () => {
+        mostrarToast("Compra simulada: esta etapa todavía no procesa pagos reales.");
     });
 }
 
