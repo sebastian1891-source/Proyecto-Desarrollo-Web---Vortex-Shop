@@ -18,18 +18,28 @@
 </div>
 </div>
 <div class="row g-2 align-items-center mt-3 mb-2">
-<div class="col-12 col-md-6">
+<div class="col-12 col-md-5">
 <input type="text" class="form-control" id="buscador" placeholder="Buscar producto por nombre...">
 </div>
-<div class="col-8 col-md-4">
+<div class="col-6 col-md-3">
 <select class="form-select" id="filtroCategoria">
 <option value="">Todas las categorías</option>
 </select>
 </div>
-<div class="col-4 col-md-2">
+<div class="col-6 col-md-2">
+<select class="form-select" id="ordenarPor">
+<option value="">Ordenar por</option>
+<option value="nombre-asc">Nombre (A-Z)</option>
+<option value="nombre-desc">Nombre (Z-A)</option>
+<option value="precio-asc">Precio (menor a mayor)</option>
+<option value="precio-desc">Precio (mayor a menor)</option>
+</select>
+</div>
+<div class="col-12 col-md-2">
 <button type="button" class="btn btn-outline-secondary w-100" id="btnLimpiarFiltros">Limpiar</button>
 </div>
 </div>
+<p class="text-secondary small mb-3" id="resultado-contador"></p>
 <div class="row g-4 mt-1" id="catalogo-container"></div>
 </div></main><footer class="footer py-4 mt-auto"><div class="container d-flex justify-content-between flex-wrap gap-2">
 <span>© 2026 Vortex Shop · Proyecto integrador</span><span>Versión inicial para estudiantes</span></div></footer>

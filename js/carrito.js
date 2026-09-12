@@ -1,4 +1,6 @@
 const CLAVE_CARRITO = "vortexCarrito";
+const COSTO_ENVIO_SIMULADO = 200;
+const UMBRAL_ENVIO_GRATIS = 20000;
 
 function obtenerCarrito() {
     const datos = localStorage.getItem(CLAVE_CARRITO);
@@ -111,25 +113,34 @@ function renderizarCarrito() {
     const listaEl = document.createElement("div");
     listaEl.className = "p-4 rounded-4 border bg-white shadow-sm";
 
-    let total = 0;
+    let subtotal = 0;
 
     carrito.forEach(item => {
         const producto = productos.find(p => p.id === item.id);
         if (!producto) return; // el producto ya no existe en el catálogo
 
-        total += producto.precio * item.cantidad;
+        subtotal += producto.precio * item.cantidad;
         listaEl.appendChild(crearFilaCarrito(item, producto));
     });
 
     contenedor.appendChild(listaEl);
 
+    const envio = subtotal >= UMBRAL_ENVIO_GRATIS ? 0 : COSTO_ENVIO_SIMULADO;
+    const total = subtotal + envio;
+
     const resumenEl = document.createElement("div");
-    resumenEl.className = "d-flex justify-content-between align-items-center flex-wrap gap-2 mt-4";
+    resumenEl.className = "d-flex justify-content-between align-items-end flex-wrap gap-2 mt-4";
     resumenEl.innerHTML = `
         <button class="btn btn-outline-secondary btn-sm" id="btnVaciarCarrito">Vaciar carrito</button>
-        <div class="d-flex align-items-center gap-3">
-            <h2 class="fw-bold mb-0" style="color: var(--primary);">Total: ${formatearPrecio(total)}</h2>
-            <button class="btn btn-primary" id="btnConfirmarCompra">Confirmar compra</button>
+        <div class="text-end">
+            <p class="mb-1 text-secondary small">Subtotal: ${formatearPrecio(subtotal)}</p>
+            <p class="mb-2 text-secondary small">
+                Envío (simulado): ${envio === 0 ? "Gratis" : formatearPrecio(envio)}
+            </p>
+            <div class="d-flex align-items-center gap-3">
+                <h2 class="fw-bold mb-0" style="color: var(--primary);">Total: ${formatearPrecio(total)}</h2>
+                <button class="btn btn-primary" id="btnConfirmarCompra">Confirmar compra</button>
+            </div>
         </div>
     `;
     contenedor.appendChild(resumenEl);

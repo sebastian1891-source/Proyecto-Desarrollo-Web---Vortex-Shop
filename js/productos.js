@@ -1,12 +1,18 @@
 const productos = [
     {
         id: "p1",
-        nombre: "Auriculares Bluetooth",
-        descripcion: "Auriculares inalámbricos",
-        categoria: "Audio",
-        precio: 2500,
+        nombre: "Auriculares inalámbricos Aiwa Awknc1090",
+        descripcion: "Sonido envolvente y conexión inalámbrica.",
+        categoria: "Accesorios",
+        precio: 2490,
         stock: 10,
-        imagen: "img/Auriculares1.png"
+        imagen: "img/Auriculares1.png",
+        caracteristicas: [
+            "Bluetooth 5.0",
+            "Batería de hasta 20 horas",
+            "Micrófono integrado",
+            "Controles táctiles"
+        ]
     },
     {
         id: "p2",
@@ -15,7 +21,13 @@ const productos = [
         categoria: "Celulares",
         precio: 59990,
         stock: 5,
-        imagen: "img/Iphone16ProMax1.jpg"
+        imagen: "img/Iphone16ProMax1.jpg",
+        caracteristicas: [
+            "Pantalla OLED de 6.9\"",
+            "Chip A18 Pro",
+            "Cámara triple de 48MP",
+            "Resistencia al agua IP68"
+        ]
     },
     {
         id: "p3",
@@ -24,16 +36,28 @@ const productos = [
         categoria: "Computación",
         precio: 34990,
         stock: 8,
-        imagen: "img/Laptop1.png"
+        imagen: "img/Laptop1.png",
+        caracteristicas: [
+            "Procesador Intel Core i7",
+            "16GB de memoria RAM",
+            "SSD de 512GB",
+            "Pantalla 15.6\" Full HD"
+        ]
     },
     {
         id: "p4",
-        nombre: "Teclado Mecánico RGB",
+        nombre: "Teclado Mecánico RGB MKMinibes Switch Outemu Blue",
         descripcion: "Precisión y comodidad para trabajar y jugar.",
         categoria: "Periféricos",
         precio: 3750,
         stock: 15,
-        imagen: "img/TecladoMecanico1.png"
+        imagen: "img/TecladoMecanico1.png",
+        caracteristicas: [
+            "Switches Outemu Blue",
+            "Retroiluminación RGB",
+            "Conexión USB-C",
+            "Teclas anti-ghosting"
+        ]
     }
 ];
 
@@ -86,6 +110,8 @@ function renderizarCatalogo(listaProductos) {
     const contenedor = document.querySelector("#catalogo-container");
     if (!contenedor) return;
 
+    actualizarContadorResultados(listaProductos.length);
+
     contenedor.innerHTML = "";
 
     if (listaProductos.length === 0) {
@@ -96,6 +122,16 @@ function renderizarCatalogo(listaProductos) {
     listaProductos.forEach(producto => {
         contenedor.appendChild(crearTarjetaProducto(producto));
     });
+}
+
+// Muestra cuántos productos coinciden con la búsqueda/filtro actual
+function actualizarContadorResultados(cantidad) {
+    const contador = document.querySelector("#resultado-contador");
+    if (!contador) return;
+
+    contador.textContent = cantidad === 1
+        ? "1 producto encontrado"
+        : `${cantidad} productos encontrados`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -154,32 +190,59 @@ function filtrarProductos(texto, categoria) {
     });
 }
 
-// Lee los valores actuales del buscador y del select, filtra y vuelve a renderizar
+// Lee los valores actuales del buscador, el select y el orden elegido,
+// filtra, ordena y vuelve a renderizar
 function aplicarFiltros() {
     const buscador = document.querySelector("#buscador");
     const selectCategoria = document.querySelector("#filtroCategoria");
+    const selectOrden = document.querySelector("#ordenarPor");
 
     const texto = buscador ? buscador.value : "";
     const categoria = selectCategoria ? selectCategoria.value : "";
+    const orden = selectOrden ? selectOrden.value : "";
 
-    const resultado = filtrarProductos(texto, categoria);
-    renderizarCatalogo(resultado);
+    const filtrados = filtrarProductos(texto, categoria);
+    const ordenados = ordenarProductos(filtrados, orden);
+
+    renderizarCatalogo(ordenados);
 }
 
-// Conecta los eventos del buscador, el select y el botón "Limpiar filtros"
+// Ordena una copia del arreglo según el criterio elegido, sin modificar el original
+function ordenarProductos(lista, criterio) {
+    const copia = [...lista];
+
+    switch (criterio) {
+        case "nombre-asc":
+            return copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        case "nombre-desc":
+            return copia.sort((a, b) => b.nombre.localeCompare(a.nombre));
+        case "precio-asc":
+            return copia.sort((a, b) => a.precio - b.precio);
+        case "precio-desc":
+            return copia.sort((a, b) => b.precio - a.precio);
+        default:
+            return copia;
+    }
+}
+
+// Conecta los eventos del buscador, el select de categoría, el de orden
+// y el botón "Limpiar filtros"
 function inicializarEventosDeFiltro() {
     const buscador = document.querySelector("#buscador");
     const selectCategoria = document.querySelector("#filtroCategoria");
+    const selectOrden = document.querySelector("#ordenarPor");
     const btnLimpiar = document.querySelector("#btnLimpiarFiltros");
 
     // "input" para que la búsqueda se actualice mientras se escribe, sin recargar la página
     buscador?.addEventListener("input", aplicarFiltros);
 
     selectCategoria?.addEventListener("change", aplicarFiltros);
+    selectOrden?.addEventListener("change", aplicarFiltros);
 
     btnLimpiar?.addEventListener("click", () => {
         if (buscador) buscador.value = "";
         if (selectCategoria) selectCategoria.value = "";
+        if (selectOrden) selectOrden.value = "";
         renderizarCatalogo(productos);
     });
 }
