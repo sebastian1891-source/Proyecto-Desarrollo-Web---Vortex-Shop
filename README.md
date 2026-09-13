@@ -87,3 +87,32 @@ Desarrollo del proceso de checkout y confirmación del pedido.
 Implementación de un sistema de inicio de sesión y registro de usuarios.
 Desarrollo de la sección "Mi perfil" para consultar y modificar información del usuario.
 Integración de un sistema de gestión de pedidos y consulta de su estado.
+
+**Funcionalidades incorporadas en el Sprint 2**
+- Catálogo generado dinámicamente desde JavaScript (antes escrito a mano en el HTML).
+- Buscador de productos por nombre y filtro por categoría, combinables entre sí, sin recargar la página.
+- Ordenamiento por nombre y por precio, y contador de resultados encontrados.
+- Detalle de producto dinámico mediante una única página (`producto.html?id=`).
+- Carrito de compras: agregar, quitar y modificar cantidades, con control de stock, subtotal, total y envío simulado.
+- Carrusel de imágenes, características técnicas, productos relacionados y valoraciones/comentarios en el detalle de producto.
+
+**Representación de los productos**
+Cada producto es un objeto dentro de un arreglo (`productos`), con los campos: `id`, `nombre`, `descripcion`, `categoria`, `precio`, `stock`, `imagen` y `caracteristicas`.
+
+**Organización de los archivos JavaScript**
+- `js/productos.js`: arreglo de productos, catálogo dinámico, búsqueda, filtro y orden.
+- `js/carrito.js`: lógica del carrito de compras.
+- `js/detalleProducto.js`: ficha dinámica de producto y productos relacionados.
+- `js/valoraciones.js`: valoraciones y comentarios.
+- `js/base.js`: sin cambios respecto al Sprint 1.
+
+**Información guardada en LocalStorage**
+- Carrito de compras: `id` de cada producto agregado y su cantidad.
+- Valoraciones: estrellas (1 a 5) y comentario de cada producto, agrupados por `id` de producto.
+
+**Funcionalidades pendientes para el siguiente sprint**
+- Checkout y confirmación real del pedido.
+- Inicio de sesión y registro de usuarios.
+- Sección "Mi perfil" funcional.
+- Panel administrativo funcional.
+- Gestión y consulta de estado de pedidos.
