@@ -121,6 +121,11 @@ body {
     color: var(--text-secondary) !important;
 }
 
+.badge-hero {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
 /* =========================
    HERO CARD
 ========================= */
